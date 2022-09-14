@@ -1,8 +1,9 @@
 import datetime
-from hackernews import HackerNews
 import json
 import os
 import requests
+
+from hackernews import HackerNews
 
 SLACK_WEBHOOK_URL = os.getenv('SLACK_WEBHOOK_URL')
 RANK_LIMIT = 10
