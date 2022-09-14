@@ -17,5 +17,6 @@ jobs:
             python-version: '3.10'
 
       - run: |
-          pip install -r requirements.txt
+          python -m pip install requests
+          python -m pip install hackernews
           python script.py
