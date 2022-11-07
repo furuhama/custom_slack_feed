@@ -17,6 +17,8 @@ def get_and_send_rankings(rank):
 
     top_story_ids = hn.top_stories(limit=rank)
 
+    print(top_story_ids)
+
     idx = 1
     for id in top_story_ids:
         item = hn.get_item(id)
