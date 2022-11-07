@@ -15,7 +15,7 @@ def send_message(text, target_url):
 def get_and_send_rankings(rank):
     hn = HackerNews()
 
-    top_story_ids = hn.top_stories(limit=rank)
+    top_story_ids = [story.item_id for story in hn.top_stories(limit=rank)]
 
     print(top_story_ids)
 
