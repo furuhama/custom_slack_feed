@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-test:
+  feed:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
