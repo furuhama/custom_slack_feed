@@ -9,6 +9,7 @@ from hackernews import HackerNews
 SLACK_WEBHOOK_URL = os.getenv('SLACK_WEBHOOK_URL')
 ANTHROPIC_API_KEY = os.getenv('ANTHROPIC_API_KEY')
 RANK_LIMIT = 10
+CLAUDE_MODEL = "claude-sonnet-4-6"
 MAX_COMMENTS = 10
 MAX_ARTICLE_CHARS = 3000
 
@@ -59,11 +60,14 @@ def summarize_with_claude(title, article_content, comments):
 
     parts.append(
         "\n\n上記の内容を日本語で要約してください。"
-        "記事の内容を2〜3文、Hacker Newsコミュニティの反応・議論を1〜2文でまとめてください。"
+        "記事の内容を2〜3文でまとめてください。"
+        "Hacker Newsのコメントについては、くだらない意見や単なる感想・賛否表明は無視し、"
+        "有用な情報や新しい視点・洞察を加えているものだけを抽出して1〜2文でまとめてください。"
+        "有用なコメントがなければコメントの要約は省略してください。"
     )
 
     with client.messages.stream(
-        model="claude-opus-4-6",
+        model=CLAUDE_MODEL,
         max_tokens=1024,
         messages=[{"role": "user", "content": '\n'.join(parts)}]
     ) as stream:
